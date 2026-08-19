@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { useAuthStore } from '../../features/auth/authStore'
 
 const tabs = [
   { to: '/', label: 'Home' },
@@ -15,6 +16,11 @@ const tabs = [
  * once you're comfortable with Tailwind's responsive prefixes.
  */
 export function Layout() {
+  // Selector goes INSIDE the parentheses — that's the part Zustand reads
+  // to decide which components to re-render. Selecting `user?.name`
+  // rather than `user` means an avatar change won't re-render this nav.
+  const userName = useAuthStore((state) => state.user?.name)
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-1 pb-16">
@@ -35,6 +41,10 @@ export function Layout() {
             {tab.label}
           </NavLink>
         ))}
+
+        {userName && (
+          <span className="text-sm px-3 py-1 text-gray-400">{userName}</span>
+        )}
       </nav>
     </div>
   )
