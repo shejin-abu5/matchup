@@ -1,0 +1,447 @@
+
+<!-- saved from url=(0137)file:///C:/Users/alter/AppData/Local/Temp/claude/D-%2D-lib-matchup/1808ef69-9785-4d99-a769-689fcf468d51/scratchpad/signup-flow-trace.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Signup Request Trace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Signup Request Trace_files/css2" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f5f4ee;
+    --paper-raised: #fdfcf8;
+    --ink: #16231d;
+    --ink-muted: #5b6b62;
+    --line: #d8ded6;
+    --primary: #0f6e56;
+    --primary-dark: #085041;
+    --accent: #c94f28;
+    --badge-ink: #f5f4ee;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101714;
+      --paper-raised: #182521;
+      --ink: #edefea;
+      --ink-muted: #93a69b;
+      --line: #2a3a33;
+      --primary: #35ab88;
+      --primary-dark: #1f7c61;
+      --accent: #ee8259;
+      --badge-ink: #0e1613;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101714;
+    --paper-raised: #182521;
+    --ink: #edefea;
+    --ink-muted: #93a69b;
+    --line: #2a3a33;
+    --primary: #35ab88;
+    --primary-dark: #1f7c61;
+    --accent: #ee8259;
+    --badge-ink: #0e1613;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: min(1120px, 94vw);
+    margin: 0 auto;
+    padding: 56px 24px 88px;
+  }
+
+  header.masthead {
+    max-width: 62ch;
+    margin-bottom: 48px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    color: var(--ink-muted);
+    font-size: 17px;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  section {
+    max-width: min(1120px, 94vw);
+    margin-bottom: 56px;
+  }
+
+  .section-head {
+    max-width: 62ch;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 21px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .section-head p {
+    color: var(--ink-muted);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.92em;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  .diagram-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper-raised);
+    padding: 8px;
+  }
+
+  .diagram-scroll svg {
+    display: block;
+    min-width: 560px;
+  }
+
+  figcaption {
+    margin-top: 14px;
+    color: var(--ink-muted);
+    font-size: 14px;
+    max-width: 68ch;
+  }
+
+  .callout {
+    margin-top: 28px;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 16px 20px;
+    background: var(--paper-raised);
+    max-width: 68ch;
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper-raised);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    max-width: 30ch;
+  }
+
+  .swatch {
+    flex: none;
+    width: 28px;
+    height: 12px;
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+
+  .swatch.happy { background: var(--ink-muted); }
+  .swatch.stop { background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 10px); height: 2px; margin-top: 9px; }
+  .swatch.boundary { background: repeating-linear-gradient(90deg, var(--accent) 0 5px, transparent 5px 9px); height: 2px; margin-top: 9px; }
+
+  .legend-item strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  footer {
+    max-width: 62ch;
+    color: var(--ink-muted);
+    font-size: 13.5px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .diagram-scroll { scroll-behavior: smooth; }
+  }
+</style>
+
+</head><body><div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">MatchUp — Phase 1 walkthrough</p>
+    <h1>Signup Request Trace</h1>
+    <p class="subtitle">What actually runs, in order, from landing on <code>/signup</code> to the nav bar showing your name — file by file, function by function.</p>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2>1. Before you type anything</h2>
+      <p>This runs once, on page load — and has to finish before the form can safely submit anything.</p>
+    </div>
+    <figure>
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1120 190" role="img" aria-label="Cold load sequence: index.html loads main.tsx, which starts the MSW mock server and waits for it, then renders the app; the router matches the current URL and mounts the signup page idle.">
+          <defs>
+            <marker id="arrowNeutral1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-muted)"></path>
+            </marker>
+          </defs>
+
+          <!-- connectors -->
+          <g stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral1)">
+            <line x1="176" y1="65" x2="204" y2="65"></line>
+            <line x1="356" y1="65" x2="384" y2="65"></line>
+            <line x1="536" y1="65" x2="564" y2="65"></line>
+            <line x1="716" y1="65" x2="744" y2="65"></line>
+            <line x1="896" y1="65" x2="924" y2="65"></line>
+          </g>
+          <g font-family="Inter" font-size="11" fill="var(--ink-muted)" text-anchor="middle">
+            <text x="190" y="56">loads</text>
+            <text x="370" y="56">checks DEV</text>
+            <text x="550" y="56">await</text>
+            <text x="730" y="56">renders</text>
+            <text x="910" y="56">matches URL</text>
+          </g>
+
+          <!-- boxes: x, w=176, y=36, h=58 -->
+          <g font-family="JetBrains Mono" font-size="12.5" font-weight="600">
+            <rect x="16" y="36" width="160" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="96" y="60" text-anchor="middle" fill="var(--ink)">index.html</text>
+            <text x="96" y="78" text-anchor="middle" font-family="Inter" font-size="11" font-weight="400" fill="var(--ink-muted)">entry script tag</text>
+
+            <rect x="204" y="36" width="152" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="280" y="58" text-anchor="middle" fill="var(--ink)">main.tsx</text>
+            <text x="280" y="76" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="400" fill="var(--ink-muted)">enableMocking()</text>
+
+            <rect x="384" y="36" width="152" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="460" y="58" text-anchor="middle" fill="var(--ink)">mocks/browser.ts</text>
+            <text x="460" y="76" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="400" fill="var(--ink-muted)">worker.start()</text>
+
+            <rect x="564" y="36" width="152" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="640" y="58" text-anchor="middle" fill="var(--ink)">main.tsx</text>
+            <text x="640" y="76" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="400" fill="var(--ink-muted)">createRoot().render()</text>
+
+            <rect x="744" y="36" width="152" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="820" y="58" text-anchor="middle" fill="var(--ink)">router.tsx</text>
+            <text x="820" y="76" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="400" fill="var(--ink-muted)">matches /signup</text>
+
+            <rect x="924" y="36" width="180" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--primary)" stroke-width="1.6"></rect>
+            <text x="1014" y="58" text-anchor="middle" fill="var(--ink)">SignupPage + Form</text>
+            <text x="1014" y="76" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="400" fill="var(--ink-muted)">mounted, idle</text>
+          </g>
+
+          <!-- step badges -->
+          <g font-family="JetBrains Mono" font-size="10.5" font-weight="600" text-anchor="middle">
+            <circle cx="24" cy="30" r="10" fill="var(--primary)"></circle><text x="24" y="33.5" fill="var(--badge-ink)">1</text>
+            <circle cx="212" cy="30" r="10" fill="var(--primary)"></circle><text x="212" y="33.5" fill="var(--badge-ink)">2</text>
+            <circle cx="392" cy="30" r="10" fill="var(--primary)"></circle><text x="392" y="33.5" fill="var(--badge-ink)">3</text>
+            <circle cx="572" cy="30" r="10" fill="var(--primary)"></circle><text x="572" y="33.5" fill="var(--badge-ink)">4</text>
+            <circle cx="752" cy="30" r="10" fill="var(--primary)"></circle><text x="752" y="33.5" fill="var(--badge-ink)">5</text>
+            <circle cx="932" cy="30" r="10" fill="var(--primary)"></circle><text x="932" y="33.5" fill="var(--badge-ink)">6</text>
+          </g>
+
+          <text x="1014" y="112" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">nothing below this line runs until you interact</text>
+        </svg>
+      </div>
+      <figcaption>main.tsx arms the mock server and <code>await</code>s it before rendering, so the very first request the app makes is never missed by MSW.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>2. One click, nine steps deep</h2>
+      <p>Everything below runs fresh on every submit. The center spine is the happy path; each right-hand branch is a place the flow legitimately stops — not a crash, a decision.</p>
+    </div>
+
+    <figure>
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 760 900" role="img" aria-label="Signup submission flow: SignupForm submits to React Hook Form&#39;s handleSubmit, which runs Zod validation. Invalid input stops at FormField showing an error. Valid input calls signup.mutate, which strips confirmPassword and calls authApi.signup, which fetches POST /api/auth/signup. This request is intercepted by the MSW service worker boundary rather than reaching a real server. The mock handler checks the in-memory user list and responds. authApi checks whether the response was ok; a rejected response stops at the mutation&#39;s error state shown in the form. A successful response flows to useSignup&#39;s onSuccess, which writes credentials to the Zustand auth store and navigates to the home route, which the router matches and Layout renders showing the user&#39;s name.">
+          <defs>
+            <marker id="arrowNeutral2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-muted)"></path>
+            </marker>
+            <marker id="arrowAccent2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path>
+            </marker>
+          </defs>
+
+          <!-- ============ main spine boxes (x=160..440, w=280) ============ -->
+          <g font-family="JetBrains Mono" font-size="12.5" font-weight="600">
+            <!-- A -->
+            <rect x="160" y="20" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+            <text x="300" y="43" text-anchor="middle" fill="var(--ink)">SignupForm.tsx</text>
+            <text x="300" y="62" text-anchor="middle" font-family="Inter" font-size="11" font-weight="400" fill="var(--ink-muted)">you click “Sign up”</text>
+          </g>
+
+          <!-- arrow A -> B -->
+          <path d="M300,78 L300,112" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="99" font-family="Inter" font-size="11" fill="var(--ink-muted)">handleSubmit()</text>
+
+          <!-- B: decision diamond, center 300,149, hw=140 hh=37 -->
+          <polygon points="300,112 440,149 300,186 160,149" fill="var(--paper-raised)" stroke="var(--primary)" stroke-width="1.6"></polygon>
+          <text x="300" y="144" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="600" fill="var(--ink)">schemas.ts</text>
+          <text x="300" y="160" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--ink-muted)">zodResolver(signupSchema)</text>
+
+          <!-- B -> C1 (invalid, accent, stop) -->
+          <path d="M440,149 L500,149" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 3" fill="none" marker-end="url(#arrowAccent2)"></path>
+          <text x="470" y="140" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--accent)">invalid</text>
+          <rect x="500" y="124" width="220" height="50" rx="8" fill="var(--paper-raised)" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 3"></rect>
+          <text x="610" y="144" text-anchor="middle" font-family="JetBrains Mono" font-size="11.5" font-weight="600" fill="var(--ink)">FormField.tsx</text>
+          <text x="610" y="161" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--accent)">shows field error — stop</text>
+
+          <!-- B -> C (valid) -->
+          <path d="M300,186 L300,220" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="207" font-family="Inter" font-size="11" fill="var(--ink-muted)">valid</text>
+
+          <!-- C -->
+          <rect x="160" y="220" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+          <text x="300" y="243" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">SignupForm.tsx</text>
+          <text x="300" y="262" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">onSubmit(data) → signup.mutate(data)</text>
+
+          <path d="M300,278 L300,312" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="299" font-family="Inter" font-size="11" fill="var(--ink-muted)">mutationFn</text>
+
+          <!-- D -->
+          <rect x="160" y="312" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+          <text x="300" y="335" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">useSignup.ts</text>
+          <text x="300" y="354" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">strips confirmPassword</text>
+
+          <path d="M300,370 L300,404" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="391" font-family="Inter" font-size="11" fill="var(--ink-muted)">authApi.signup()</text>
+
+          <!-- E -->
+          <rect x="160" y="404" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+          <text x="300" y="427" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">authApi.ts</text>
+          <text x="300" y="446" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">fetch POST /api/auth/signup</text>
+
+          <!-- boundary crossing -->
+          <path d="M300,462 L300,530" stroke="var(--accent)" stroke-width="1.8" fill="none" marker-end="url(#arrowAccent2)"></path>
+          <line x1="40" y1="490" x2="720" y2="490" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="6 4"></line>
+          <text x="380" y="482" text-anchor="middle" font-family="Inter" font-size="10.5" font-weight="600" fill="var(--accent)">MSW SERVICE WORKER — intercepts here, no real network call</text>
+
+          <!-- F -->
+          <rect x="160" y="530" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+          <text x="300" y="553" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">mocks/handlers.ts</text>
+          <text x="300" y="572" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">checks users[], builds response</text>
+
+          <path d="M300,588 L300,622" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="609" font-family="Inter" font-size="11" fill="var(--ink-muted)">response body</text>
+
+          <!-- G: decision diamond, center 300,659 -->
+          <polygon points="300,622 440,659 300,696 160,659" fill="var(--paper-raised)" stroke="var(--primary)" stroke-width="1.6"></polygon>
+          <text x="300" y="654" text-anchor="middle" font-family="JetBrains Mono" font-size="12" font-weight="600" fill="var(--ink)">authApi.ts</text>
+          <text x="300" y="670" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--ink-muted)">response.ok?</text>
+
+          <!-- G -> H1 (rejected, accent, stop) -->
+          <path d="M440,659 L500,659" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="4 3" fill="none" marker-end="url(#arrowAccent2)"></path>
+          <text x="470" y="650" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--accent)">401 / 409</text>
+          <rect x="500" y="634" width="220" height="50" rx="8" fill="var(--paper-raised)" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 3"></rect>
+          <text x="610" y="654" text-anchor="middle" font-family="JetBrains Mono" font-size="11.5" font-weight="600" fill="var(--ink)">useSignup.ts</text>
+          <text x="610" y="671" text-anchor="middle" font-family="Inter" font-size="10.5" fill="var(--accent)">mutation.error — shown in form</text>
+
+          <!-- G -> H (ok) -->
+          <path d="M300,696 L300,730" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="717" font-family="Inter" font-size="11" fill="var(--ink-muted)">ok</text>
+
+          <!-- H -->
+          <rect x="160" y="730" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--line)"></rect>
+          <text x="300" y="753" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">useSignup.ts</text>
+          <text x="300" y="772" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">onSuccess: setCredentials() + navigate</text>
+
+          <path d="M300,788 L300,822" stroke="var(--ink-muted)" stroke-width="1.6" fill="none" marker-end="url(#arrowNeutral2)"></path>
+          <text x="310" y="809" font-family="Inter" font-size="11" fill="var(--ink-muted)">URL → '/'</text>
+
+          <!-- I -->
+          <rect x="160" y="822" width="280" height="58" rx="8" fill="var(--paper-raised)" stroke="var(--primary)" stroke-width="1.6"></rect>
+          <text x="300" y="845" text-anchor="middle" font-family="JetBrains Mono" font-size="12.5" font-weight="600" fill="var(--ink)">router.tsx + Layout.tsx</text>
+          <text x="300" y="864" text-anchor="middle" font-family="Inter" font-size="11" fill="var(--ink-muted)">'/' renders, nav shows your name</text>
+
+          <!-- step badges (main spine only) -->
+          <g font-family="JetBrains Mono" font-size="10.5" font-weight="600" text-anchor="middle">
+            <circle cx="172" cy="14" r="10" fill="var(--primary)"></circle><text x="172" y="17.5" fill="var(--badge-ink)">1</text>
+            <circle cx="172" cy="214" r="10" fill="var(--primary)"></circle><text x="172" y="217.5" fill="var(--badge-ink)">3</text>
+            <circle cx="172" cy="306" r="10" fill="var(--primary)"></circle><text x="172" y="309.5" fill="var(--badge-ink)">4</text>
+            <circle cx="172" cy="398" r="10" fill="var(--primary)"></circle><text x="172" y="401.5" fill="var(--badge-ink)">5</text>
+            <circle cx="172" cy="524" r="10" fill="var(--primary)"></circle><text x="172" y="527.5" fill="var(--badge-ink)">6</text>
+            <circle cx="172" cy="724" r="10" fill="var(--primary)"></circle><text x="172" y="727.5" fill="var(--badge-ink)">7</text>
+            <circle cx="172" cy="816" r="10" fill="var(--primary)"></circle><text x="172" y="819.5" fill="var(--badge-ink)">8</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Two decision points gate the request: Zod checks the form before anything leaves the browser, and the mock server's response decides whether <code>setCredentials()</code> ever runs.</figcaption>
+    </figure>
+
+    <div class="callout">
+      <span class="callout-label">Login is the same shape</span>
+      <p>Swap <code>SignupForm→LoginForm</code>, <code>useSignup→useLogin</code>, <code>signupSchema→loginSchema</code>, and drop the <code>confirmPassword</code> step — every other box in this diagram is identical, including the MSW boundary and both decision points.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="legend">
+      <div class="legend-item"><span class="swatch happy"></span><span><strong>Solid arrow</strong> — the happy path, one step always leads to the next.</span></div>
+      <div class="legend-item"><span class="swatch stop"></span><span><strong>Dashed accent</strong> — a legitimate stop: bad input or a rejected request, not a crash.</span></div>
+      <div class="legend-item"><span class="swatch boundary"></span><span><strong>Accent boundary line</strong> — the one place a real network call would leave the browser. MSW catches it here instead.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Traced from the actual Phase 1 code in <code>src/features/auth/</code>, <code>src/app/router.tsx</code>, and <code>src/mocks/</code>.
+  </footer>
+
+</div>
+</body></html>

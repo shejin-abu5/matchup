@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from '../shared/components/Layout'
 import { ProtectedRoute } from '../shared/components/ProtectedRoute'
 import { PagePlaceholder } from '../shared/components/PagePlaceholder'
+import { LoginPage } from '../features/auth/components/LoginPage'
+import { SignupPage } from '../features/auth/components/SignupPage'
+import { DiscoverPage } from '../features/matches/components/DiscoverPage'
 
 /**
  * Route tree, matching docs/02-app-flow.md.
@@ -17,16 +20,16 @@ import { PagePlaceholder } from '../shared/components/PagePlaceholder'
 export const router = createBrowserRouter([
   {
     path: '/login',
-    element: <PagePlaceholder title="Login" description="Phase 1" />,
+    element: <LoginPage />,
   },
   {
     path: '/signup',
-    element: <PagePlaceholder title="Sign up" description="Phase 1" />,
+    element: <SignupPage />,
   },
   {
     element: <Layout />,
     children: [
-      { path: '/', element: <PagePlaceholder title="Discover matches" description="Phase 2" /> },
+      { path: '/', element: <DiscoverPage /> },
       { path: '/matches/:id', element: <PagePlaceholder title="Match detail" description="Phase 2" /> },
       { path: '/teams', element: <PagePlaceholder title="Teams" description="Phase 3" /> },
       { path: '/teams/:id', element: <PagePlaceholder title="Team profile" description="Phase 3" /> },

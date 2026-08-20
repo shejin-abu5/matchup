@@ -1,5 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../features/auth/authStore'
+import { queryClient } from '../../app/queryClient'
+import { Button } from './Button'
 
 const tabs = [
   { to: '/', label: 'Home' },
@@ -20,6 +22,19 @@ export function Layout() {
   // to decide which components to re-render. Selecting `user?.name`
   // rather than `user` means an avatar change won't re-render this nav.
   const userName = useAuthStore((state) => state.user?.name)
+  const logout = useAuthStore((state) => state.logout)
+  const navigate = useNavigate()
+
+  // Logging out clears TWO separate things, on purpose: Zustand's session
+  // (who you are) and the Query cache (data you fetched while logged in —
+  // your matches, your team roster). Skipping queryClient.clear() would
+  // leave the next user who logs in on this device seeing stale cached
+  // data from the previous session for a moment, until it refetches.
+  const handleLogout = () => {
+    logout()
+    queryClient.clear()
+    navigate('/login')
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -43,7 +58,12 @@ export function Layout() {
         ))}
 
         {userName && (
-          <span className="text-sm px-3 py-1 text-gray-400">{userName}</span>
+          <div className="flex items-center gap-2 px-3 py-1">
+            <span className="text-sm text-gray-400">{userName}</span>
+            <Button variant="ghost" className="px-2 py-0.5 text-xs" onClick={handleLogout}>
+              Log out
+            </Button>
+          </div>
         )}
       </nav>
     </div>

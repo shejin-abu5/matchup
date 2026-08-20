@@ -7,6 +7,7 @@ import './index.css'
 import { queryClient } from './app/queryClient'
 import { router } from './app/router'
 
+
 /**
  * Compare this to `main.tsx` on the `redux-toolkit-version` branch:
  * the Redux `<Provider store={store}>` wrapper is gone entirely.
@@ -19,11 +20,26 @@ import { router } from './app/router'
  * to the Redux/Zustand question, it's providing the query CACHE, a
  * different concern from client state.
  */
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  </StrictMode>,
-)
+/**
+ * Dev-only: put the fake pizza guy (MSW) in position before we open the
+ * front door (render). Skipped entirely in production — import.meta.env.DEV
+ * is false there, so this whole branch (and MSW itself) is dropped from
+ * the build.
+ */
+async function enableMocking() {
+  if (!import.meta.env.DEV) return
+
+  const { worker } = await import('./mocks/browser')
+  await worker.start()
+}
+
+enableMocking().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </StrictMode>,
+  )
+})
